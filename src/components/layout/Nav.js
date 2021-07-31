@@ -14,10 +14,10 @@ export const Nav = ({ data }) => {
           
           {/*Regular Link*/}
           <li className="hover:bg-blue-800 hover:text-white hidden md:block">
-            <Link to='/nuevotrato' className="relative block py-6 px-2 lg:p-6 text-sm lg:text-base font-bold">Nuevo trato</Link>
+            <Link to='/' className="relative block py-6 px-2 lg:p-6 text-sm lg:text-base font-bold">Home</Link>
           </li>
           <li className="hover:bg-blue-800 hover:text-white hidden md:block">
-            <Link to='/tratos' className="relative block py-6 px-2 lg:p-6 text-sm lg:text-base font-bold">Tratos</Link>
+            <Link to='/myMessages' className="relative block py-6 px-2 lg:p-6 text-sm lg:text-base font-bold">Mis mensajes</Link>
           </li>
           {/*Toggleable Link*/}
 
