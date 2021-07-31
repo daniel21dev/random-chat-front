@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -18,6 +18,7 @@ const GET_USER = gql`
     getUser{
       id
       name
+      email
     }
   }
 `
@@ -32,14 +33,14 @@ export const AppRouter = () => {
 
     return (
         <Router>
-            <Switch>
-                <Route exact path='/' component={ Home } />
-                <PrivateRoute exact path='/myMessages' component={ MyMessages } isAuthenticated={ !!data?.getUser } />
-
-                <PublicRoute path='/login' component={ Login } isAuthenticated={ !!data?.getUser  }/>
-                <PublicRoute path='/signup' component={ SignUp } isAuthenticated={ !!data?.getUser }/>
-                <Redirect to='/'/>
-            </Switch>
+              <Switch>
+                  <Route exact path='/' component={ Home } />
+                  <PrivateRoute exact path='/myMessages' component={ MyMessages } isAuthenticated={ !!data?.getUser } />
+                
+                  <PublicRoute path='/login' component={ Login } isAuthenticated={ !!data?.getUser  }/>
+                  <PublicRoute path='/signup' component={ SignUp } isAuthenticated={ !!data?.getUser }/>
+                  <Redirect to='/'/>
+              </Switch>
         </Router>
     )
 }
