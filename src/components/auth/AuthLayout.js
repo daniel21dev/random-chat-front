@@ -10,17 +10,17 @@ const AuthLayout = ({ children }) => {
             }}
             >
             <header className="max-w-lg mx-auto">
-                <a href="#">
+                <p>
                 <h1 className="text-4xl font-bold text-black text-center">Startup</h1>
-                </a>
+                </p>
             </header>
 
             { children }
 
             <footer className="max-w-lg mx-auto flex justify-center text-white">
-                <a href="#" className="hover:underline">Contact</a>
+                <p className="hover:underline">Contact</p>
                 <span className="mx-3">•</span>
-                <a href="#" className="hover:underline">Privacy</a>
+                <p className="hover:underline">Privacy</p>
             </footer>
         </div>
     )

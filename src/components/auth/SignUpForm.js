@@ -55,7 +55,7 @@ const SignUpForm = ({ formik }) => {
             </div>
 
             <div className="flex justify-end">
-                <a href="#" className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Forgot your password?</a>
+                <p className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Forgot your password?</p>
             </div>
 
             <button 

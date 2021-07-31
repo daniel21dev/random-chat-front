@@ -23,7 +23,7 @@ export const AppRouter = () => {
         if( token ){
             
         }
-    }, [])
+    }, [token])
 
     if ( loading ) {
         return (<h5>Espere...</h5>);

@@ -49,7 +49,7 @@ export const SignUp = () => {
                 })
                 console.log( data );
             } catch (error) {
-                
+                setError( error )
             }
         }   
     })
