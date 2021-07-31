@@ -20,7 +20,7 @@ export const Nav = () => {
       <nav className="relative bg-white border-b-2 border-gray-300 text-gray-900">
         
       <div className="container mx-auto flex justify-between">
-        <div className="relative block p-4 lg:p-6 text-xl text-blue-600 font-bold">Trato</div>
+        <div className="relative block p-4 lg:p-6 text-xl text-blue-600 font-bold">Random Chat</div>
         <ul className="flex">
           
           {/*Regular Link*/}

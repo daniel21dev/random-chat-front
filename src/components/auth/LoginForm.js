@@ -39,7 +39,7 @@ export const LoginForm = ({ formik }) => {
             </div>
 
             <div className="flex justify-end">
-                <p className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Forgot your password?</p>
+                <p className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">olvidaste tu contraseña?</p>
             </div>
 
             <button 

@@ -24,7 +24,7 @@ const GET_USER = gql`
 
 export const AppRouter = () => {
 
-    const { data, loading, error} = useQuery( GET_USER )
+    const { data, loading } = useQuery( GET_USER )
 
     if ( loading ) {
         return (<h5>Espere...</h5>);
@@ -34,10 +34,10 @@ export const AppRouter = () => {
         <Router>
             <Switch>
                 <Route exact path='/' component={ Home } />
-                <PrivateRoute exact path='/myMessages' component={ MyMessages } isAuthenticated={ !!data.getUser.user } />
+                <PrivateRoute exact path='/myMessages' component={ MyMessages } isAuthenticated={ !!data?.getUser } />
 
-                <PublicRoute path='/login' component={ Login } isAuthenticated={ !!data.getUser  }/>
-                <PublicRoute path='/signup' component={ SignUp } isAuthenticated={ !!data.getUser }/>
+                <PublicRoute path='/login' component={ Login } isAuthenticated={ !!data?.getUser  }/>
+                <PublicRoute path='/signup' component={ SignUp } isAuthenticated={ !!data?.getUser }/>
                 <Redirect to='/'/>
             </Switch>
         </Router>

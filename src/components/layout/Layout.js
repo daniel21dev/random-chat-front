@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import client from '../../config/apollo'
 import { MovileNavigation } from './MovileNavigation'
 import { Nav } from './Nav'
 
 export const Layout = ({ children }) => {
+
+    useEffect( async()=>{
+        await client.resetStore()
+    },[])
+    
     return (
         <div class="bg-gray-200 font-sans leading-normal tracking-normal w-screen h-screen">
             <Nav />

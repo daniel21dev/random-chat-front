@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import AuthLayout from './AuthLayout'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -10,8 +10,7 @@ import { gql, useMutation } from '@apollo/client'
 const CREATE_USER = gql`
     mutation($input: UserInput!){
         createUser(input: $input) {
-            id
-            name
+            token
         }
     }
 `
@@ -19,7 +18,8 @@ const CREATE_USER = gql`
 export const SignUp = () => {
 
     const [error,setError] = useState(null)
-    const [ createUser ] = useMutation(CREATE_USER) 
+    const [ createUser ] = useMutation(CREATE_USER)
+    const history = useHistory()
 
     const formik = useFormik({
         initialValues:{
@@ -47,9 +47,10 @@ export const SignUp = () => {
                         }
                     }
                 })
-                console.log( data );
+                localStorage.setItem('token', data.createUser.token )
+                history.push('/')
             } catch (error) {
-                setError( error )
+                setError( error.message )
             }
         }   
     })
@@ -58,8 +59,8 @@ export const SignUp = () => {
         <AuthLayout>
             <main className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
                 <section>
-                    <h3 className="font-bold text-2xl">Welcome to Startup</h3>
-                    <p className="text-gray-600 pt-2">Sign in to your account.</p>
+                    <h3 className="font-bold text-2xl">Bienvenido</h3>
+                    <p className="text-gray-600 pt-2">Cree una cuenta nueva</p>
                 </section>
                 <section className="mt-10">
 

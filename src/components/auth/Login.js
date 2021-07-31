@@ -56,8 +56,8 @@ export const Login = () => {
         <AuthLayout>
             <main className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
                 <section>
-                    <h3 className="font-bold text-2xl">Welcome to Startup</h3>
-                    <p className="text-gray-600 pt-2">Sign in to your account.</p>
+                    <h3 className="font-bold text-2xl">Bienvenido</h3>
+                    <p className="text-gray-600 pt-2">Ingresa a tu cuenta</p>
                 </section>
                 <section className="mt-10">
                 { error && <Alert type="error" msg={ error }/>}

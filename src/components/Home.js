@@ -14,7 +14,7 @@ const GET_USER = gql`
 `
 export const Home = () => {
   
-  const {data,loading, error} = useQuery( GET_USER )
+  const {data} = useQuery( GET_USER )
 
     return (
         <Layout>
@@ -26,7 +26,7 @@ export const Home = () => {
             <GetMessage />
 
             {
-              data.getUser &&
+              data?.getUser &&
               <MessageForm />
             }
           </div>
