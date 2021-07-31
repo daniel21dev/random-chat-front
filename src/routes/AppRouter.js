@@ -11,33 +11,33 @@ import { Home } from '../components/Home';
 import { MyMessages } from '../components/MyMessages';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+import { gql, useQuery } from '@apollo/client'
 
+const GET_USER = gql`
+  query getUser{
+    getUser{
+      id
+      name
+    }
+  }
+`
 
 export const AppRouter = () => {
 
-    const token = localStorage.getItem('token')
-    const user = false
-    const loading = false
-
-    useEffect(() => {
-        if( token ){
-            
-        }
-    }, [token])
+    const { data, loading, error} = useQuery( GET_USER )
 
     if ( loading ) {
         return (<h5>Espere...</h5>);
     }
 
-
     return (
         <Router>
             <Switch>
                 <Route exact path='/' component={ Home } />
-                <PrivateRoute exact path='/myMessages' component={ MyMessages } isAuthenticated={ !!user } />
+                <PrivateRoute exact path='/myMessages' component={ MyMessages } isAuthenticated={ !!data.getUser.user } />
 
-                <PublicRoute path='/login' component={ Login } isAuthenticated={ !!user  }/>
-                <PublicRoute path='/signup' component={ SignUp } isAuthenticated={ !!user }/>
+                <PublicRoute path='/login' component={ Login } isAuthenticated={ !!data.getUser  }/>
+                <PublicRoute path='/signup' component={ SignUp } isAuthenticated={ !!data.getUser }/>
                 <Redirect to='/'/>
             </Switch>
         </Router>

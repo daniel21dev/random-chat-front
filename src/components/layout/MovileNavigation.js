@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const MovileNavigation = () => {
 
-    //const user = useSelector( state => state.auth )
-
-    
+        
     return (
         <footer className="md:hidden w-full bg-white shadow-xl h-20 fixed bottom-0 p-4">
             <div className="flex justify-around w-full">

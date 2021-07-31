@@ -1,7 +1,6 @@
 import React from 'react'
 import { MovileNavigation } from './MovileNavigation'
 import { Nav } from './Nav'
-//import { SideBar } from './SideBar'
 
 export const Layout = ({ children }) => {
     return (

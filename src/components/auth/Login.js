@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import AuthLayout from './AuthLayout'
 import { LoginForm } from './LoginForm'
 import { useFormik } from 'formik'
@@ -8,8 +8,10 @@ import { Alert } from '../utils/Alert'
 import { gql, useMutation } from '@apollo/client'
 
 const LOGIN = gql`
-    mutation($input: LoginInput!){
-        loginUser(input: $input)
+    mutation loginUser($input: LoginInput!){
+        loginUser(input: $input){
+            token
+        }
     }
 `
 
@@ -17,6 +19,7 @@ export const Login = () => {
 
     const [loginUser] = useMutation(LOGIN)
     const [error,setError] = useState(null)
+    const history = useHistory()
 
     const formik = useFormik({
         initialValues:{
@@ -40,13 +43,10 @@ export const Login = () => {
                         }
                     }
                 })
-                if( !data.loginUser ){
-                    setError( 'Sucedio un error' )
-                    return setTimeout(()=> setError(null), 3000)
-                }
-                localStorage.setItem('token', data.loginUser)
+                localStorage.setItem('token', data.loginUser.token )
+                history.push('/')
             } catch (err) {
-                setError( 'Sucedio un error' )
+                setError( err.message )
                 setTimeout(()=> setError(null), 3000)
             }
         }
