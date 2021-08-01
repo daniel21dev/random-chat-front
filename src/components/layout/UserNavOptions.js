@@ -8,8 +8,8 @@ export const UserNavOptions = ({ user }) => {
 
     const handleLogout = () =>{
         localStorage.removeItem('token')
-        setTimeout(()=>client.resetStore(), 10)
-        history.push('/')
+        client.resetStore()
+        setTimeout(()=>history.push('/'),50) 
     }
 
     return (

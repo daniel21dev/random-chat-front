@@ -16,11 +16,7 @@ export const MyMessages = () => {
 
     const { data, loading, error } = useQuery( GET_USER_MESSAGES )
 
-    if( !data ){
-        return 'There is no messages still'
-    }
-
-    const messages = data.getUserMessages
+    const messages = data?.getUserMessages || []
 
     return (
         <Layout>
@@ -29,11 +25,14 @@ export const MyMessages = () => {
                 <h1 className="font-semibold text-2xl text-center text-gray-800">My messages</h1>
 
                 <div className=" p-2 ">
+                    { loading && 'Cargando...'}
+                    { messages.length === 0 && 'Aun no tienes mensajes'}
                     {
-                        messages.map( ({id,text}) =>(
+                        messages.map( message =>(
                             <Message 
-                                key={id}
-                                text={ text }
+                                key={ message.id }
+                                message={ message }
+                                own={ true }
                             />
                         ))
                     }

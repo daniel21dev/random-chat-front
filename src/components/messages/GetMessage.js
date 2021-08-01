@@ -5,7 +5,9 @@ import { Message } from './Message'
 const GET_RANDOM_MESSAGE = gql`
   query getRandomMessage{
     getRandomMessage {
+      id
       text
+      createdAt
     }
   }
 `
@@ -13,10 +15,12 @@ const GET_RANDOM_MESSAGE = gql`
 export const GetMessage = () => {
   
   const { data, error, loading, refetch } = useQuery( GET_RANDOM_MESSAGE )
-  const [text, setText] = useState( null )
+  const [message, setMessage] = useState( null )
   
   useEffect(()=>{
-    setText( data?.getRandomMessage.text )
+    if( data?.getRandomMessage ){
+      setMessage( data.getRandomMessage );
+    }
   },[ data ])
 
   if( loading ) return 'cargandoo'
@@ -30,7 +34,7 @@ export const GetMessage = () => {
         <div className="bg-white p-4 rounded shadow w-full flex-col justify-end">
             
             {
-              text && <Message text={ text }/>
+              message && <Message message={ message }/>
             }
       
             <div>
@@ -38,7 +42,7 @@ export const GetMessage = () => {
                     className="bg-blue-600 text-white rounded p-2 mx-auto my-2 shadow hover:bg-blue-700"
                     onClick={ handleRefetch }
                 >
-                    Get another message
+                    Traer otro mensaje
                 </button>
             </div>
         </div>
