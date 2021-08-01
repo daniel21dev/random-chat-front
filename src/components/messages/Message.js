@@ -18,7 +18,7 @@ export const Message = ({ message, own = false }) => {
                 }
             </div>
             <p className="ml-4">
-                { message.text }
+                "{ message.text }"
             </p>
         </div>
     )

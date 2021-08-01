@@ -25,10 +25,12 @@ export const Home = () => {
 
             <GetMessage />
 
-            <h2 className="font-semibold text-2xl text-center text-gray-800">Publica un mensaje anonimo</h2>
             {
               data?.getUser &&
-              <MessageForm />
+              <div>
+                <h2 className="font-semibold text-2xl text-center text-gray-800">Publica un mensaje anonimo</h2>
+                <MessageForm />
+              </div>
             }
           </div>
 
