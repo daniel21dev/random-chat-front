@@ -27,7 +27,7 @@ export const Layout = ({ children }) => {
         <userContext.Provider value={{
             data
         }}>
-            <div class="bg-gray-200 font-sans leading-normal tracking-normal w-screen">
+            <div class="bg-gray-200 font-sans leading-normal tracking-normal w-screen min-w-full">
                 <Nav data={ data }/>
                     <div className=" bg-gray-200 sm:w-full md:w-3/4 lg:w-1/2 mx-auto p-4">
                         { children }

@@ -23,11 +23,7 @@ export const UserNavOptions = ({ user }) => {
                   
                   <ul className="px-4 sm:w-full  pb-6 pt-6 lg:pt-3">
                     <h3 className="font-bold text-xl text-white text-bold mb-2">{ user.email }</h3>
-                    <li>
-                      <button
-                        className="block p-3 hover:bg-blue-600 text-gray-300 hover:text-white"
-                        >Configuración</button>
-                    </li>
+                    
                     <li>
                       <button
                         className="block p-3 hover:bg-blue-600 text-gray-300 hover:text-white"

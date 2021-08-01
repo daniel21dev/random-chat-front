@@ -4,6 +4,7 @@ import { Layout } from './layout/Layout'
 import { Message } from './messages/Message'
 import Modal from 'react-modal';
 import { MessageForm } from './messages/MessageForm';
+import { ToastContainer, toast } from 'react-toastify';
 
 const GET_USER_MESSAGES = gql`
     query getUserMessages{
@@ -24,7 +25,7 @@ const UPDATE_MESSAGE = gql`
 `
 export const MyMessages = () => {
 
-    const { data, loading, error } = useQuery( GET_USER_MESSAGES )
+    const { data, loading, refetch } = useQuery( GET_USER_MESSAGES )
     const [ updateMessage ] = useMutation( UPDATE_MESSAGE )
     const [edit, setEdit] = useState( null )
     const messages = data?.getUserMessages || []
@@ -37,16 +38,20 @@ export const MyMessages = () => {
                  variables:{ input:{ text, id: edit.id }}
             })
             setEdit( null )
+            refetch()
         } catch (error) {
             console.log( error.message );
         }
     }
 
     return (
+        <>
+            <ToastContainer />
         <Layout>
+
             <div className="p-10 flex flex-col space-y-3 mb-20">
             
-                <h1 className="font-semibold text-2xl text-center text-gray-800">My messages</h1>
+                <h1 className="font-semibold text-2xl text-center text-gray-800">Mis mensajes</h1>
 
                 <div className=" p-2 ">
                     { loading && 'Cargando...'}
@@ -72,7 +77,9 @@ export const MyMessages = () => {
                 contentLabel="Editar"
                 style={{
                     content:{
-                        height: 'auto'
+                        height: '300px',
+                        width: '500px',
+                        margin: 'auto'
                     }
                 }}
             >
@@ -88,5 +95,6 @@ export const MyMessages = () => {
                 />
             </Modal>
         </Layout>
+        </>
     )
 }
