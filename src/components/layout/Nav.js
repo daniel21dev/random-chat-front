@@ -21,7 +21,7 @@ export const Nav = ({ data }) => {
           </li>
           {/*Toggleable Link*/}
 
-          { data.getUser ? (
+          { data?.getUser ? (
               <UserNavOptions user={ data.getUser} />
           ):(
             <Link 

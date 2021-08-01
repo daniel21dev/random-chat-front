@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.loading{
+    background: white;
+    animation: load 1s linear infinite;
+}
+
+@keyframes load{
+    from{ 
+        background:  white; 
+        color: black;
+    }
+    to{ 
+        background: rgb(80, 126, 253);
+        color: white;
+    }
+}

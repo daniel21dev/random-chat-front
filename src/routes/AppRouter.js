@@ -25,10 +25,14 @@ const GET_USER = gql`
 
 export const AppRouter = () => {
 
-    const { data, loading } = useQuery( GET_USER )
+    const { data, loading, error } = useQuery( GET_USER )
 
     if ( loading ) {
         return (<h5>Espere...</h5>);
+    }
+
+    if( error ){
+      localStorage.removeItem('token')
     }
 
     return (

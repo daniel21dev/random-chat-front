@@ -5,6 +5,7 @@ import { Message } from './messages/Message'
 import Modal from 'react-modal';
 import { MessageForm } from './messages/MessageForm';
 import { ToastContainer, toast } from 'react-toastify';
+import LoadingMessage from './messages/LoadingMessage';
 
 const GET_USER_MESSAGES = gql`
     query getUserMessages{
@@ -32,15 +33,19 @@ export const MyMessages = () => {
 
     const handleEdit = async(e, text) =>{
         e.preventDefault()
+        if( text.length < 1 || text.length > 255){
+            return toast.warn('El mensaje debe de tener entre 1 y 255 caracteres')
+        }
+
         try {
-            console.log({text,id: edit.id });
             await updateMessage({
                  variables:{ input:{ text, id: edit.id }}
             })
             setEdit( null )
             refetch()
+            toast.success('Mensaje actualizado')
         } catch (error) {
-            console.log( error.message );
+            toast.error('Hubo un error')
         }
     }
 
@@ -54,7 +59,7 @@ export const MyMessages = () => {
                 <h1 className="font-semibold text-2xl text-center text-gray-800">Mis mensajes</h1>
 
                 <div className=" p-2 ">
-                    { loading && 'Cargando...'}
+                    { loading && <LoadingMessage />}
                     { messages.length === 0 && 'Aun no tienes mensajes'}
                     {
                         messages.map( message =>(

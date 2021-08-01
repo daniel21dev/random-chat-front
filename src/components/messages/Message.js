@@ -3,7 +3,7 @@ import { formatDate } from '../../helpers/formatDate'
 
 export const Message = ({ message, own = false, setEdit=()=>{} }) => {
     return (
-        <div className="p-4 my-2 rounded bg-white shadow border-l-4 border-blue-500">
+        <div className="p-4 my-2 rounded bg-white shadow border-l-4 border-blue-500 w-full">
 
             <div className="flex justify-between">
                 <p className="text-sm"><span className="font-semibold">publicado: </span>{ formatDate( message.createdAt ) }</p>
@@ -11,7 +11,7 @@ export const Message = ({ message, own = false, setEdit=()=>{} }) => {
                 {
                     own &&(
                         <button 
-                            className="flex items-center rounded-lg p-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+                            className="flex items-center rounded-lg px-2 py-1 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
                             onClick={()=> setEdit( message )}
                         >
                             <span className="text-sm">Editar</span>
@@ -23,7 +23,7 @@ export const Message = ({ message, own = false, setEdit=()=>{} }) => {
                 }
                 
             </div>
-            <p className="ml-4">
+            <p className="ml-4 h-auto overflow-x-auto text-justify">
                 "{ message.text }"
             </p>
         </div>

@@ -12,19 +12,19 @@ const GET_USER = gql`
     }
   }
 `
+
 export const Home = () => {
   
-  const {data} = useQuery( GET_USER )
+  const { data } = useQuery( GET_USER )
 
     return (
         <Layout>
-
           <div className="p-10 flex flex-col space-y-3">
             
             <h1 className="font-semibold text-2xl text-center text-gray-800">Mensajes aleatorios</h1>
 
             <GetMessage />
-
+            
             {
               data?.getUser &&
               <div>
@@ -33,6 +33,7 @@ export const Home = () => {
               </div>
             }
           </div>
+
 
         </Layout>
     )

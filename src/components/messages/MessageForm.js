@@ -16,13 +16,14 @@ export const MessageForm = ({ handleSubmit, initialText='' }) => {
                 >
 
                 </textarea>
-                <div>
+                <div className="flex justify-between w-full">
                     <button
-                        className="bg-blue-600 text-white rounded p-2 mx-auto my-2 shadow hover:bg-blue-700"
+                        className="bg-blue-600 text-white rounded p-2 my-2 shadow hover:bg-blue-700"
                         type="submit"
                     >
                         Publicar mensaje
                     </button>
+                    <span className="text-gray-600">caracteres: { text.length }</span>
                 </div>
         </form>
     )

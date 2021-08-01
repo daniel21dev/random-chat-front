@@ -1,5 +1,6 @@
 import { useQuery, gql } from '@apollo/client'
 import React, { useEffect, useState } from 'react'
+import LoadingMessage from './LoadingMessage'
 import { Message } from './Message'
 
 const GET_RANDOM_MESSAGE = gql`
@@ -23,7 +24,7 @@ export const GetMessage = () => {
     }
   },[ data ])
 
-  if( loading ) return 'cargandoo'
+  if( loading ) return <LoadingMessage />
   if( error ) return 'error'
   
   const handleRefetch = async() =>{
