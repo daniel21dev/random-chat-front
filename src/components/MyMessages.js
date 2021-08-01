@@ -1,7 +1,9 @@
-import { gql, useQuery } from '@apollo/client'
-import React from 'react'
+import { gql, useMutation, useQuery } from '@apollo/client'
+import React, { useState } from 'react'
 import { Layout } from './layout/Layout'
 import { Message } from './messages/Message'
+import Modal from 'react-modal';
+import { MessageForm } from './messages/MessageForm';
 
 const GET_USER_MESSAGES = gql`
     query getUserMessages{
@@ -12,11 +14,33 @@ const GET_USER_MESSAGES = gql`
         }
     }
 `
+const UPDATE_MESSAGE = gql`
+    mutation updateMessage($input: UpdateMessageInput!){
+        updateMessage(input: $input) {
+            id
+            text
+        }
+  }
+`
 export const MyMessages = () => {
 
     const { data, loading, error } = useQuery( GET_USER_MESSAGES )
-
+    const [ updateMessage ] = useMutation( UPDATE_MESSAGE )
+    const [edit, setEdit] = useState( null )
     const messages = data?.getUserMessages || []
+
+    const handleEdit = async(e, text) =>{
+        e.preventDefault()
+        try {
+            console.log({text,id: edit.id });
+            await updateMessage({
+                 variables:{ input:{ text, id: edit.id }}
+            })
+            setEdit( null )
+        } catch (error) {
+            console.log( error.message );
+        }
+    }
 
     return (
         <Layout>
@@ -33,6 +57,7 @@ export const MyMessages = () => {
                                 key={ message.id }
                                 message={ message }
                                 own={ true }
+                                setEdit={ setEdit }
                             />
                         ))
                     }
@@ -40,6 +65,28 @@ export const MyMessages = () => {
 
             </div>
             
+            <Modal
+                isOpen={ !!edit }
+                //onAfterOpen={afterOpenModal}
+                onRequestClose={()=> setEdit( null )}
+                contentLabel="Editar"
+                style={{
+                    content:{
+                        height: 'auto'
+                    }
+                }}
+            >
+                <button
+                    className="float-right"
+                    onClick={ ()=> setEdit( null ) }
+                >X</button>
+
+                <h3 className="text-xl my-2 text-center">Editar mensaje</h3>
+                <MessageForm 
+                    initialText={ edit?.text }
+                    handleSubmit={ handleEdit }
+                />
+            </Modal>
         </Layout>
     )
 }

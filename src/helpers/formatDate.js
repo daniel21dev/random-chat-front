@@ -1,6 +1,5 @@
 
 export const formatDate = ( date ) =>{
-    console.log( date );
     const d = new Date( date )
     let year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
     let month = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);

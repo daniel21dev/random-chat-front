@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import React from 'react'
 import { Layout } from './layout/Layout'
 import { GetMessage } from './messages/GetMessage'
-import { MessageForm } from './messages/MessageForm'
+import { PostMessage } from './messages/PostMessage'
 
 const GET_USER = gql`
   query getUser{
@@ -29,7 +29,7 @@ export const Home = () => {
               data?.getUser &&
               <div>
                 <h2 className="font-semibold text-2xl text-center text-gray-800">Publica un mensaje anonimo</h2>
-                <MessageForm />
+                <PostMessage />
               </div>
             }
           </div>

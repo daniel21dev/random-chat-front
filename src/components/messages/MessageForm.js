@@ -1,39 +1,12 @@
-import { gql, useMutation } from '@apollo/client'
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 
-const CREATE_MESSAGE = gql`
-    mutation createMessage($input: MessageInput!){
-        createMessage(input: $input) {
-            text
-        }
-    }
-`
+export const MessageForm = ({ handleSubmit, initialText='' }) => {
 
-export const MessageForm = () => {
-
-    const [ createMessage ] = useMutation( CREATE_MESSAGE )
-    const [text,setText] = useState('')
-    const history = useHistory()
-
-    const handleSubmit = async(e) =>{
-        e.preventDefault()
-
-        if( text.length < 1) return
-
-        try {
-            await createMessage({ variables:{ input:{ text } }})
-            history.push('/myMessages')
-        } catch (error) {
-            console.log( error );
-        }
-    }
+    const [text,setText] = useState( initialText )
 
     return (
-        <div className="bg-white p-4 rounded shadow w-full flex-col justify-end">
-            
-            <form
-                onSubmit={ handleSubmit }
+        <form
+                onSubmit={(e)=> handleSubmit(e,text) }
             >
                 <textarea
                     className="border-2 p-2 border-gray-400 rounded w-full font-semibold focus:outline-none focus:border-blue-600"
@@ -51,8 +24,6 @@ export const MessageForm = () => {
                         Publicar mensaje
                     </button>
                 </div>
-            </form>
-            
-        </div>
+        </form>
     )
 }
