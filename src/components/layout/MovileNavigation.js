@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const MovileNavigation = () => {
-
+    // this component is only visible in small screens such as smartphones
         
     return (
         <footer className="md:hidden w-full bg-white shadow-xl h-20 fixed bottom-0 p-4">

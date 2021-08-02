@@ -2,6 +2,7 @@ import React from 'react'
 import { formatDate } from '../../helpers/formatDate'
 
 export const Message = ({ message, own = false, setEdit=()=>{} }) => {
+    // in this component only the prop message is obligatory, this is in order to reuse the component in edition
     return (
         <div className="p-4 my-2 rounded bg-white shadow border-l-4 border-blue-500 w-full">
 

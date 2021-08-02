@@ -28,6 +28,7 @@ export const MyMessages = () => {
 
     const { data, loading, refetch } = useQuery( GET_USER_MESSAGES )
     const [ updateMessage ] = useMutation( UPDATE_MESSAGE )
+    // manage what message will be updated and if modal is open
     const [edit, setEdit] = useState( null )
     const messages = data?.getUserMessages || []
 
@@ -42,6 +43,7 @@ export const MyMessages = () => {
                  variables:{ input:{ text, id: edit.id }}
             })
             setEdit( null )
+            // update the list of messages
             refetch()
             toast.success('Mensaje actualizado')
         } catch (error) {
@@ -75,6 +77,7 @@ export const MyMessages = () => {
 
             </div>
             
+            {/* modal for edit a meesage of the list */}
             <Modal
                 isOpen={ !!edit }
                 //onAfterOpen={afterOpenModal}

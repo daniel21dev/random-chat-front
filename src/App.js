@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
+  // wraps the app whit the apollo client
   return (
     <ApolloProvider client={ client }>
       <AppRouter />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export const MessageForm = ({ handleSubmit, initialText='' }) => {
-
+    // the func handle submit most be provider by the father component
     const [text,setText] = useState( initialText )
 
     return (

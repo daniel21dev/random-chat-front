@@ -12,14 +12,13 @@ export const Nav = ({ data }) => {
         <div className="relative block p-4 lg:p-6 text-xl text-blue-600 font-bold">Random Chat</div>
         <ul className="flex">
           
-          {/*Regular Link*/}
+          {/*This options are only visible in large screens*/}
           <li className="hover:bg-blue-800 hover:text-white hidden md:block">
             <Link to='/' className="relative block py-6 px-2 lg:p-6 text-sm lg:text-base font-bold">Home</Link>
           </li>
           <li className="hover:bg-blue-800 hover:text-white hidden md:block">
             <Link to='/myMessages' className="relative block py-6 px-2 lg:p-6 text-sm lg:text-base font-bold">Mis mensajes</Link>
           </li>
-          {/*Toggleable Link*/}
 
           { data?.getUser ? (
               <UserNavOptions user={ data.getUser} />

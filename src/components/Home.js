@@ -15,6 +15,7 @@ const GET_USER = gql`
 
 export const Home = () => {
   
+  // if user is in cache not send the query
   const { data } = useQuery( GET_USER )
 
     return (

@@ -18,15 +18,16 @@ export const GetMessage = () => {
   const { data, error, loading, refetch } = useQuery( GET_RANDOM_MESSAGE )
   const [message, setMessage] = useState( null )
   
+  // this effect ensures that the message is always new, is necesary because apollo client cache results
   useEffect(()=>{
     if( data?.getRandomMessage ){
       setMessage( data.getRandomMessage );
     }
   },[ data ])
-
+  // if the query is loading display a void component
   if( loading ) return <LoadingMessage />
   if( error ) return 'error'
-  
+  // this func brings a new random message 
   const handleRefetch = async() =>{
     refetch()
   }

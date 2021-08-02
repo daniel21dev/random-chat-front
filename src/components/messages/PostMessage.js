@@ -25,6 +25,7 @@ export const PostMessage = () => {
         try {
             await createMessage({ variables:{ input:{ text } }})
             toast.success('Mensaje publicado')
+
         } catch (error) {
             toast.error('Hubo un error')
             console.log( error );
@@ -34,7 +35,7 @@ export const PostMessage = () => {
     return (
         <div className="bg-white p-4 rounded shadow w-full flex-col justify-end">
             <ToastContainer />
-            <MessageForm handleSubmit={ handleSubmit }/>
+            <MessageForm handleSubmit={ handleSubmit } initialText=''/>
             
         </div>
     )

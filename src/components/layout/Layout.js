@@ -17,12 +17,13 @@ const GET_USER = gql`
 
 export const Layout = ({ children }) => {
 
-    const { data, loading } = useQuery( GET_USER )
+    const { data } = useQuery( GET_USER )
 
+    // reset the apollo cache in order to have the current token and current data
     useEffect(()=>{
         client.resetStore()
     },[])
-    
+    // using a context in order to provide data to child components and scale in future
     return (
         <userContext.Provider value={{
             data
