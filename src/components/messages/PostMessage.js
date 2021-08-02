@@ -17,7 +17,7 @@ export const PostMessage = () => {
 
     const handleSubmit = async(e, text) =>{
         e.preventDefault()
-
+        text = text.trim()
         if( text.length < 1 || text.length > 255){
             return toast('El mensaje debe de tener entre 1 y 255 caracteres')
         }

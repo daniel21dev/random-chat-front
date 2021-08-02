@@ -34,6 +34,7 @@ export const MyMessages = () => {
 
     const handleEdit = async(e, text) =>{
         e.preventDefault()
+        text = text.trim()
         if( text.length < 1 || text.length > 255){
             return toast.warn('El mensaje debe de tener entre 1 y 255 caracteres')
         }
