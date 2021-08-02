@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -27,12 +27,13 @@ export const AppRouter = () => {
 
     const { data, loading, error } = useQuery( GET_USER )
 
+    useEffect(()=>{
+      if( error ){
+        localStorage.removeItem('token')
+      }
+    },[ data, error ])
     if ( loading ) {
         return (<h5>Espere...</h5>);
-    }
-
-    if( error ){
-      localStorage.removeItem('token')
     }
 
     return (

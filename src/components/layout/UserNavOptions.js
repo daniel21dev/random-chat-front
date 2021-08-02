@@ -9,7 +9,7 @@ export const UserNavOptions = ({ user }) => {
     const handleLogout = () =>{
         localStorage.removeItem('token')
         client.resetStore()
-        setTimeout(()=>history.push('/'),50) 
+        history.go(0)
     }
 
     return (
