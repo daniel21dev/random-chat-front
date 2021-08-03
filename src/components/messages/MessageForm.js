@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-export const MessageForm = ({ handleSubmit, initialText='' }) => {
+export const MessageForm = ({ handleSubmit, initialText='', reset }) => {
     // the func handle submit most be provider by the father component
     const [text,setText] = useState( initialText )
 
     return (
         <form
-                onSubmit={(e)=> handleSubmit(e,text) }
+                onSubmit={(e)=> handleSubmit(e,text, setText) }
             >
                 <textarea
                     className="border-2 p-2 border-gray-400 rounded w-full font-semibold focus:outline-none focus:border-blue-600"
@@ -23,7 +23,7 @@ export const MessageForm = ({ handleSubmit, initialText='' }) => {
                     >
                         Publicar mensaje
                     </button>
-                    <span className="text-gray-600">caracteres: { text.length }</span>
+                    <span className="text-gray-600">caracteres: { text.trim().length }</span>
                 </div>
         </form>
     )
